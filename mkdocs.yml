@@ -1,0 +1,36 @@
+#Project Information
+site_name: Data Structures and Algorithms
+site_description: Simplified data structures, algorithms and competitive coding questions.
+theme:
+  name: material
+
+nav:
+  - Preface: index.md
+  - Data Structures:
+      - Basic: DataStructures/basic.md
+      - Advanced: DataStructures/advanced.md
+      - Very Advanced: DataStructures/vadvanced.md
+  - Algorithms:
+      - Basic:
+          - Sorting: Algorithms/basic/sorting.md
+          - Tree Traversal: Algorithms/basic/treetraversal.md
+      - Advanced:
+          - General: Algorithms/advanced/general.md
+          - Divide And Conquer: Algorithms/advanced/dnc.md
+          - Greedy: Algorithms/advanced/greedy.md
+          - DP: Algorithms/advanced/dp.md
+          - Graph: Algorithms/advanced/graph.md
+  - Competitive Coding:
+      - Easy:
+          - General: CompCoding/easy/general.md
+          - Trees: CompCoding/easy/trees.md
+          - Graphs: CompCoding/easy/graphs.md
+          - DP: CompCoding/easy/dp.md
+      - Medium: CompCoding/medium.md
+      - Hard: CompCoding/hard.md
+      - Combo Problems:
+          - Catalan Numbers: CompCoding/combo/catalan.md
+          - Overlapping Intervals: CompCoding/combo/overlapping_intervals.md
+
+
+
