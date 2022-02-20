@@ -6,6 +6,8 @@
 
 ## Min Heap/ Max Heap
 
+  ![](../img/heap1.png)
+
 ## Disjoint set
 
 
