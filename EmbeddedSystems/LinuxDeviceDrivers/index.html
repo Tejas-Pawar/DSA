@@ -1,0 +1,1442 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Simplified data structures, algorithms and competitive coding questions.">
+      
+      
+        <meta name="author" content="Tejas Pawar">
+      
+      
+        <link rel="canonical" href="https://tejas-pawar.github.io/DSA/EmbeddedSystems/LinuxDeviceDrivers/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
+    
+    
+      
+        <title>LinuxDeviceDrivers - Data Structures and Algorithms</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4a0965b7.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/katex.css">
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#driver-basic-code-structure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Data Structures and Algorithms" class="md-header__button md-logo" aria-label="Data Structures and Algorithms" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data Structures and Algorithms
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LinuxDeviceDrivers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Data Structures and Algorithms" class="md-nav__button md-logo" aria-label="Data Structures and Algorithms" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Data Structures and Algorithms
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Data Structures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data Structures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Data Structures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DataStructures/basic/" class="md-nav__link">
+        Basic
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DataStructures/advanced/" class="md-nav__link">
+        Advanced
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DataStructures/vadvanced/" class="md-nav__link">
+        Very Advanced
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Algorithms
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Algorithms" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Algorithms
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Basic
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Basic" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Basic
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithms/basic/sorting/" class="md-nav__link">
+        Sorting
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithms/Resources/algo_resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Competitive Coding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Competitive Coding" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Competitive Coding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Hard
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Hard" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Hard
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/recursion/" class="md-nav__link">
+        Recursion
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/tree/" class="md-nav__link">
+        Tree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/graph/" class="md-nav__link">
+        Graph Traversal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/list/" class="md-nav__link">
+        Linked List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/sdesheet/" class="md-nav__link">
+        SDE Sheet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/dp/" class="md-nav__link">
+        Dynamic Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/string/" class="md-nav__link">
+        Strings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/numbertheory/" class="md-nav__link">
+        Number Theory
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/greedy/" class="md-nav__link">
+        Greedy
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Embedded Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Embedded Systems" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Embedded Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          Socket
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Socket" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Socket
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iomux/" class="md-nav__link">
+        IO Multiplexing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Techniques You Must Know
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Techniques You Must Know" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Techniques You Must Know
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Techniques/mustknow_difficult/" class="md-nav__link">
+        Difficult
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          System Design
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Design" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          System Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemDesign/system_design_resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../debugEnhancement/" class="md-nav__link">
+        BoilerplateCode
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          Object Oriented
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Object Oriented" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Object Oriented
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OOP/oop_resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#driver-basic-code-structure" class="md-nav__link">
+    Driver Basic Code structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passing-arguments" class="md-nav__link">
+    Passing Arguments
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#major-number-and-minor-number" class="md-nav__link">
+    Major number and minor number
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ioctl" class="md-nav__link">
+    IOCTL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-ioctl-name-__ioxmagic-numbercommand-numbertype" class="md-nav__link">
+    define "ioctl name" __IOX("magic number","command number","type")
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-wr_value-_iowaaint32_t" class="md-nav__link">
+    define WR_VALUE _IOW('a','a',int32_t*)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-rd_value-_iorabint32_t" class="md-nav__link">
+    define RD_VALUE _IOR('a','b',int32_t*)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procfs" class="md-nav__link">
+    PROCFS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sysfs" class="md-nav__link">
+    SYSFS
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h2 id="driver-basic-code-structure">Driver Basic Code structure</h2>
+<p>https://tldp.org/LDP/lkmpg/2.4/html/book1.htm</p>
+<p>Following command displays information about the drivers</p>
+<p><code>modinfo hello_world_module.ko</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&quot;GPL&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">MODULE_AUTHOR</span><span class="p">(</span><span class="s">&quot;Author&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">MODULE_DESCRIPTION</span><span class="p">(</span><span class="s">&quot;A sample driver&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">MODULE_VERSION</span><span class="p">(</span><span class="s">&quot;2:1.0&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<p>Kernel modules require a different set of header files than user programs require. And keep in mind, Module code should not invoke user space Libraries or API’s or System calls.</p>
+<p>insmod installs kernel module (.ko) and rmmod removes kernel module.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//Called first on insmod</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">__init</span><span class="w"> </span><span class="nf">hello_world_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="cm">/* Constructor */</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">module_init</span><span class="p">(</span><span class="n">hello_world_init</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">//Called on rmmod</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">__exit</span><span class="w"> </span><span class="nf">hello_world_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_world_exit</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<p>Logging:
+Log levels: KERN_EMERG, KERN_ALERT, KERN_CRIT, KERN_ERR, KERN_WARNING, KERN_NOTICE, KERN_INFO, KERN_DEBUG</p>
+<p>printk(KERN_INFO "Welcome To EmbeTronicX");</p>
+<p>Sample Linux driver</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;linux/kernel.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;linux/init.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;linux/module.h&gt;</span><span class="cp"></span>
+
+<span class="cm">/*</span>
+<span class="cm">** Module Init function</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">__init</span><span class="w"> </span><span class="nf">hello_world_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printk</span><span class="p">(</span><span class="n">KERN_INFO</span><span class="w"> </span><span class="s">&quot;This is the Simple Module</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">printk</span><span class="p">(</span><span class="n">KERN_INFO</span><span class="w"> </span><span class="s">&quot;Kernel Module Inserted Successfully...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="cm">/*</span>
+<span class="cm">** Module Exit function</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">__exit</span><span class="w"> </span><span class="nf">hello_world_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printk</span><span class="p">(</span><span class="n">KERN_INFO</span><span class="w"> </span><span class="s">&quot;Kernel Module Removed Successfully...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">module_init</span><span class="p">(</span><span class="n">hello_world_init</span><span class="p">);</span><span class="w"></span>
+<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_world_exit</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&quot;GPL&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">MODULE_AUTHOR</span><span class="p">(</span><span class="s">&quot;Author Name&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">MODULE_DESCRIPTION</span><span class="p">(</span><span class="s">&quot;A simple hello world driver&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">MODULE_VERSION</span><span class="p">(</span><span class="s">&quot;2:1.0&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<p>Sample makefile</p>
+<div class="highlight"><pre><span></span><code><span class="n">obj</span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">hello_world</span><span class="p">.</span><span class="n">o</span><span class="w"></span>
+
+<span class="n">ifdef</span><span class="w"> </span><span class="n">ARCH</span><span class="w"></span>
+<span class="w">  </span><span class="cp">#You can update your Beaglebone path here.</span>
+<span class="w">  </span><span class="n">KDIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">username</span><span class="o">/</span><span class="n">BBG</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="mf">5.10.65</span><span class="o">/</span><span class="n">build</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w">  </span><span class="n">KDIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">$</span><span class="p">(</span><span class="n">shell</span><span class="w"> </span><span class="n">uname</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="n">build</span><span class="w"></span>
+<span class="n">endif</span><span class="w"></span>
+
+<span class="nl">all</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">make</span><span class="w"> </span><span class="o">-</span><span class="n">C</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">KDIR</span><span class="p">)</span><span class="w">  </span><span class="n">M</span><span class="o">=</span><span class="n">$</span><span class="p">(</span><span class="n">shell</span><span class="w"> </span><span class="n">pwd</span><span class="p">)</span><span class="w"> </span><span class="n">modules</span><span class="w"></span>
+
+<span class="nl">clean</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">make</span><span class="w"> </span><span class="o">-</span><span class="n">C</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">KDIR</span><span class="p">)</span><span class="w">  </span><span class="n">M</span><span class="o">=</span><span class="n">$</span><span class="p">(</span><span class="n">shell</span><span class="w"> </span><span class="n">pwd</span><span class="p">)</span><span class="w"> </span><span class="n">clean</span><span class="w"></span>
+</code></pre></div>
+<p><code>sudo make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-</code></p>
+<h2 id="passing-arguments">Passing Arguments</h2>
+<p>Permissions :
+S_IWUSR
+S_IRUSR
+S_IXUSR
+S_IRGRP
+S_IWGRP
+S_IXGRP
+In this S_I is a common header.
+R = read ,W =write ,X= Execute.
+USR =user ,GRP =Group
+Using OR ‘|’ (or operation) we can set multiple permissions at a time.</p>
+<p>module_param(name, type, perm);
+Takes three parameters: the name of the variable, its type, and a permissions mask to be used for an accompanying sysfs entry.
+module_param() macro creates the sub-directory under /sys/module. For example,
+module_param(valueETX, int, S_IWUSR|S_IRUSR);
+This will create a sysfs entry. (/sys/module/hello_world_module/parameters/valueETX)</p>
+<p>module_param(valueETX, int, S_IWUSR|S_IRUSR);
+This will create a sysfs entry. (/sys/module/hello_world_module/parameters/valueETX)</p>
+<p>Supported types are bool, invbool, charp, int, long, short, uint, ulong, ushort</p>
+<p>module_param_array()
+This macro is used to send the array as an argument to the Linux device driver. Array parameters, where the values are supplied as a comma-separated list, are also supported by the module loader. To declare an array parameter, use:</p>
+<p>module_param_array(name,type,num,perm);</p>
+<p>module_param_cb()
+This macro is used to register the callback. Whenever the argument (parameter) got changed, this callback function will be called.</p>
+<p>By using this module_param_cb() macro, we can get a notification on change of file for given argument.</p>
+<p>If you want to get a notification whenever the value got to change, we need to register our handler function to its file operation structure first.</p>
+<p>struct kernel_param_ops 
+{
+ int (<em>set)(const char </em>val, const struct kernel_param <em>kp);
+ int (</em>get)(char <em>buffer, const struct kernel_param </em>kp);
+ void (<em>free)(void </em>arg);
+};</p>
+<h2 id="major-number-and-minor-number">Major number and minor number</h2>
+<p>User space -&gt; Device file -&gt; Major number, Minor number -&gt; Driver -&gt; Hardware
+<br/>Initially, the Application will open the device file. 
+<br/>This device file is created by the device driver).
+<br/>Then this device file will find the corresponding device driver using major and minor numbers.
+<br/>Then that Device driver will talk to the Hardware device.</p>
+<p>In linux, everything is a file even a device.
+To create a device file, we need to know about major number and minor number </p>
+<p>Major number -&gt; Driver (Can be same for multiple devices)
+Minor number -&gt; individual physical device (hw device, present at different memory locations)</p>
+<p>Allocation :
+Static 
+With registration, you tell the kernel what device numbers you want (the start major/minor number and count) and it either gives them to you or not (depending on availability).
+int register_chrdev_region(dev_t first, unsigned int count, char *name);
+dev_t dev = MKDEV(235, 0);
+register_chrdev_region(dev, 1, "Embetronicx_Dev");
+void unregister_chrdev_region(dev_t first, unsigned int count);</p>
+<p>Dynamic
+With allocation, you tell the kernel how many device numbers you need (the starting minor number and count) and it will find a starting major number for you, if one is available, of course.
+dev_t dev = 0;
+alloc_chrdev_region(&amp;dev, 0, 1, "Embetronicx_Dev")</p>
+<p>Dynamic is better since it avoids conflicts and you don't need to maintain static allocation.</p>
+<p>dev_t is a 32-bit quantity with 12 bits set aside for the major number and 20 for the minor number.
+MKDEV(int major, int minor);</p>
+<h2 id="summary">Summary</h2>
+<p>Calls <strong>init</strong> on insmod, <strong>exit</strong>  on rmmod</p>
+<p>For passing arguments, file is created in /sys/module to accept parameters.
+Dynamic modification of files for parameters accepted using module_param and module_param_array won't have any effect on kernel module. We need to get some notification whenever there is a change. For that we use module_param_cb which accepts pointer to kernel_param_ops object.</p>
+<p>User space -&gt; Device file -&gt; Major number, Minor number -&gt; Driver -&gt; Hardware</p>
+<p>We need to allocate major number for driver and minor number (count for devices)
+We can allocate the major and minor numbers in two ways.</p>
+<p><br/>Initially, the Application will open the device file. 
+<br/>This device file is created by the device driver).
+<br/>Then this device file will find the corresponding device driver using major and minor numbers.
+<br/>Then that Device driver will talk to the Hardware device.</p>
+<p>In linux, everything is a file even a device.
+To create a device file, we need to know about major number and minor number </p>
+<p>Major number -&gt; Driver (Can be same for multiple devices)
+Minor number -&gt; individual physical device (hw device, present at different memory locations)</p>
+<p>Allocation :
+Static 
+With registration, you tell the kernel what device numbers you want (the start major/minor number and count) and it either gives them to you or not (depending on availability).
+int register_chrdev_region(dev_t first, unsigned int count, char *name);
+dev_t dev = MKDEV(235, 0);
+register_chrdev_region(dev, 1, "Embetronicx_Dev");
+void unregister_chrdev_region(dev_t first, unsigned int count);</p>
+<p>Dynamic
+With allocation, you tell the kernel how many device numbers you need (the starting minor number and count) and it will find a starting major number for you, if one is available, of course.
+dev_t dev = 0;
+alloc_chrdev_region(&amp;dev, 0, 1, "Embetronicx_Dev")</p>
+<p>Dynamic is better since it avoids conflicts and you don't need to maintain static allocation.</p>
+<p>dev_t is a 32-bit quantity with 12 bits set aside for the major number and 20 for the minor number.
+MKDEV(int major, int minor);</p>
+<p>cat /proc/devices lists all major numbers assigned and drivers. (Name is inappropriate as it lists drivers and not devices)</p>
+<p>Each device on the system has corresponding device file in /dev/ e.g. /dev/ttyS0
+But all files from /dev/ don't necessarily correspond to hardware devices e.g. /dev/null</p>
+<p>Device file creation:
+Manual
+mknod -m <permissions> <name> <device type> <major> <minor>
+sudo mknod -m 666 /dev/etx_device c 246 0
+device type = c/b character / block</p>
+<p>Automatic
+Include the header file linux/device.h and linux/kdev_t.h</p>
+<p>Create the struct Class
+Following will create a file in /sys/class
+struct class * class_create (struct module <em>owner, const char </em>name);
+void class_destroy (struct class * cls);</p>
+<p>Now create a device:
+Create Device with the class which is created by the above step
+struct device <em>device_create (struct </em>class, struct device <em>parent, dev_t dev, void * drvdata, const char </em>fmt, ...);</p>
+<div class="highlight"><pre><span></span><code><span class="kt">dev_t</span><span class="w"> </span><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">class</span><span class="w"> </span><span class="o">*</span><span class="n">dev_class</span><span class="p">;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">__init</span><span class="w"> </span><span class="nf">hello_world_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">alloc_chrdev_region</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;etx_Dev&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">dev_class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">class_create</span><span class="p">(</span><span class="n">THIS_MODULE</span><span class="p">,</span><span class="s">&quot;etx_class&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">device_create</span><span class="p">(</span><span class="n">dev_class</span><span class="p">,</span><span class="nb">NULL</span><span class="p">,</span><span class="n">dev</span><span class="p">,</span><span class="nb">NULL</span><span class="p">,</span><span class="s">&quot;etx_device&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>If you want to perform any file operation on device file created, we need to register fops using cdev.
+When we create device file in /dev/, kernel maintains inode pointer for that file. inode pointer can point to char/block/pipe. In this case, we need to point to char device. so we need to set i_cdev. 
+This is set by 
+cdev_init(&amp;etx_cdev,&amp;fops);
+cdev_add(&amp;etx_cdev,dev,1);
+So now any device file created using this driver(major number) will use these fops.
+inode: https://github.com/torvalds/linux/blob/master/include/linux/fs.h
+cdev: https://github.com/torvalds/linux/blob/master/include/linux/cdev.h</p>
+<p>There are many ways to Communicate between the Userspace and Kernel Space, they are:
+IOCTL
+Procfs
+Sysfs
+Configfs
+Debugfs
+Sysctl
+UDP Sockets
+Netlink Sockets</p>
+<p>https://stackoverflow.com/questions/7137209/difference-between-softirqs-and-tasklets?rq=1</p>
+<h1 id="ioctl">IOCTL</h1>
+<p>Steps involved in IOCTL
+There are some steps involved to use IOCTL.</p>
+<p>Create IOCTL command in driver</p>
+<h1 id="define-ioctl-name-__ioxmagic-numbercommand-numbertype">define "ioctl name" __IOX("magic number","command number","type")</h1>
+<p>_IO, _IOW, _IOR, _IORW are helper macros to create a unique ioctl identifier and add the required R/W needed features
+magic number could be major number, or any unique number specific to driver
+command number is specific to individual command for given driver. 
+e.g. tty driver has major number to uniquely identify tty driver. Now we need to uniquely identify each ioctl command for tty driver e.g. set_baud_rate, set_encoding, etc. So we will assign unique command numbers for each command.
+type could be int, char, int<em>, char</em>, etc.</p>
+<p>We need unqiue number created from _IOX in both userspace and kernel space.</p>
+<p>Write IOCTL function in the driver
+int  ioctl(struct inode <em>inode,struct file </em>file,unsigned int cmd,unsigned long arg)</p>
+<p>Create IOCTL command in a Userspace application</p>
+<h1 id="define-wr_value-_iowaaint32_t">define WR_VALUE _IOW('a','a',int32_t*)</h1>
+<h1 id="define-rd_value-_iorabint32_t">define RD_VALUE _IOR('a','b',int32_t*)</h1>
+<p>Use the IOCTL system call in a Userspace
+long ioctl( "file descriptor","ioctl command","Arguments");</p>
+<h1 id="procfs">PROCFS</h1>
+<p>This is another way to communicate to kernel space drivers. We create file in /proc and register fops for that file in driver. Whenever we write anything to /proc/ file, fops functions registered would be called.
+procfs resides in memory.</p>
+<p>[optional]Create procfs directory
+struct proc_dir_entry <em>proc_mkdir(const char </em>name, struct proc_dir_entry *parent)</p>
+<p>Create procfs entry
+&lt;5.10
+struct proc_dir_entry <em>proc_create ( const char </em>name, umode_t mode, struct proc_dir_entry <em>parent, const struct file_operations </em>proc_fops )</p>
+<blockquote>
+<p>5.10
+struct proc_dir_entry <em>proc_create(const char </em>name, umode_t mode, struct proc_dir_entry <em>parent, const struct proc_ops </em>proc_ops);
+if parent pointer is null, then directly create in /proc/</p>
+</blockquote>
+<p>Note that You need to pass file_operations/ proc_ops pointer to create proc entry.
+static struct proc_ops proc_fops = {
+        .proc_open = open_proc,
+        .proc_read = read_proc,
+        .proc_write = write_proc,
+        .proc_release = release_proc
+};</p>
+<p>Waitqueues are used to suspend execution of somethreads and wake them on some condition or signal.</p>
+<p>Initialize wq:
+wait_queue_head_t wq;
+init_waitqueue_head (&amp;wq);</p>
+<p>Suspend 
+wait_event
+wait_event_timeout
+wait_event_cmd
+wait_event_interruptible
+wait_event_interruptible_timeout
+wait_event_killable</p>
+<p>Wake up:
+wake_up
+wake_up_all
+wake_up_interruptible
+wake_up_sync and wake_up_interruptible_sync</p>
+<p>Create a thread and from that new thread
+You can suspend yourself till some condition returns true.
+<div class="highlight"><pre><span></span><code><span class="c1">//example thread function</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">wait_function</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">unused</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;Waiting For Event...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">wait_event_interruptible</span><span class="p">(</span><span class="n">wait_queue_etx</span><span class="p">,</span><span class="w"> </span><span class="n">wait_queue_flag</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">wait_queue_flag</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;Event Came From Exit Function</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;Event Came From Read Function - %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">++</span><span class="n">read_count</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">wait_queue_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">do_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">//fops read which causes above thread to wake up</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">ssize_t</span><span class="w"> </span><span class="nf">etx_read</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">file</span><span class="w"> </span><span class="o">*</span><span class="n">filp</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">__user</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="n">loff_t</span><span class="w"> </span><span class="o">*</span><span class="n">off</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;Read Function</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait_queue_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">wake_up_interruptible</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wait_queue_etx</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div></p>
+<h1 id="sysfs">SYSFS</h1>
+<p>This is similar to procfs but developed after procfs as procfs had become very complex due to its use for dumping data.
+Implementation wise instead of using proc_ops, we are using kobject with show,store.
+Here kobject binds sysfs and kernel.</p>
+<p>struct kobject {
+ char <em>k_name;
+ char name[KOBJ_NAME_LEN];
+ struct kref kref;
+ struct list_head entry;
+ struct kobject </em>parent;
+ struct kset <em>kset;
+ struct kobj_type </em>ktype;
+ struct dentry *dentry;
+};</p>
+<p>Create directory in sysfs
+struct kobject * kobject_create_and_add ( const char * name, struct kobject * parent);</p>
+<p>Create sysfs file
+int sysfs_create_file ( struct kobject *  kobj, const struct attribute * attr);</p>
+<p>struct kobj_attribute {
+ struct attribute attr;
+ ssize_t (<em>show)(struct kobject </em>kobj, struct kobj_attribute <em>attr, char </em>buf);
+ ssize_t (<em>store)(struct kobject </em>kobj, struct kobj_attribute <em>attr, const char </em>buf, size_t count);
+};
+Macro : Pass show and store pointer to __ATTR(name, permission, show_ptr, store_ptr);</p>
+<p>Interrupts</p>
+<p>There are 2 types of kernel contexts
+If related to userspace process -&gt; process context
+If related to other interrupts (not syscalls) -&gt; interrupt context</p>
+<p>Code executing from interrupt context cannot do the following:
+Go to sleep or relinquish the processor
+Acquire a mutex
+Perform time-consuming tasks
+Access user space virtual memory</p>
+<p>Consider isr as top half (time critical) + bottom half (long task).
+So disable interrupts while performing top half and re-enable interrupts so that we don't miss any other interrupts.</p>
+<p>There are 4 bottom half mechanisms are available in Linux:</p>
+<p>Workqueue
+Threaded IRQs
+Softirq
+Tasklets</p>
+<p>Important points to remember while writing interrupts:
+Interrupt handlers can not enter sleep, so to avoid calls to some functions which has sleep.
+When the interrupt handler has part of the code to enter the critical section, use spinlocks lock, rather than mutexes. Because if it couldn’t take mutex it will go to sleep until it takes the mute.
+Interrupt handlers can not exchange data with the userspace.
+The interrupt handlers must be executed as soon as possible. To ensure this, it is best to split the implementation into two parts, the top half and the bottom half. The top half of the handler will get the job done as soon as possible and then work late on the bottom half, which can be done with softirq or tasklet or workqueue.
+Interrupt handlers can not be called repeatedly. When a handler is already executing, its corresponding IRQ must be disabled until the handler is done.
+Interrupt handlers can be interrupted by higher authority handlers. If you want to avoid being interrupted by a highly qualified handler, you can mark the interrupt handler as a fast handler. However, if too many are marked as fast handlers, the performance of the system will be degraded, because the interrupt latency will be longer.</p>
+<p>Register IRQ NO and irq_handler, so that on that interrupt isr irq_handler is called.</p>
+<pre><code>    if (request_irq(IRQ_NO, irq_handler, IRQF_SHARED, "etx_device", (void *)(irq_handler))) {
+        printk(KERN_INFO "my_device: cannot register IRQ ");
+                goto irq;
+    }
+</code></pre>
+<p>Spinlocks</p>
+<p>Difference between mutex, spin_lock_try</p>
+<p>Notes;
+1. You can not sleep or give processor in irq
+2. There are only 2 types of interrupts
+    1. Preemptible
+    2. Non-preemptible</p>
+<p>https://www.kernel.org/doc/htmldocs/kernel-locking/cheatsheet.html</p>
+<p>User context - User context  -&gt; even mutex is fine here, spin_lock</p>
+<p>Bottom half - Bottom half -&gt;  spin_lock as no other bottom half(pre-emptible type irq) will run on that cpu</p>
+<p>User context - Bottom Half  -&gt; Need to disable soft interrupts</p>
+<p>Bottom Half - Hard IRQ  -&gt; Need to disable all interrupts</p>
+<p>Hard IRQ - Hard IRQ  -&gt; Need to disable all interrupts</p>
+<p>If you want to check if function is running in interrupt context call
+in_ interrupt( )
+returns non-zero if in interrupt context (hw/sw)
+0 </p>
+<p>Timers :
+This timer callback function will be executed from the interrupt context. line 426 (no sleep or giving up processor)</p>
+<p>Repeated timer implementation:
+<div class="highlight"><pre><span></span><code>__init__
+{
+/* setup your timer to call my_timer_callback */
+    timer_setup(&amp;etx_timer, timer_callback, 0);
+
+ /* setup timer interval to based on TIMEOUT Macro */
+    mod_timer(&amp;etx_timer, jiffies + msecs_to_jiffies(TIMEOUT));
+
+}
+
+//Timer Callback function. This will be called when timer expires
+void timer_callback(struct timer_list * data)
+{
+    /* do your timer stuff here */
+    pr_info(&quot;Timer Callback function Called [%d]\n&quot;,count++);
+
+    /*
+       Re-enable timer. Because this function will be called only first time. 
+       If we re-enable this will work like periodic timer. 
+    */
+    mod_timer(&amp;etx_timer, jiffies + msecs_to_jiffies(TIMEOUT));
+}
+</code></pre></div></p>
+<p>HZ -&gt; Number of times jiffies is incremented in 1 second i.e. number of ticks in 1 second</p>
+<p>High resolution timer</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//Timer Callback function. This will be called when timer expires</span>
+<span class="k">enum</span><span class="w"> </span><span class="n">hrtimer_restart</span><span class="w"> </span><span class="nf">timer_callback</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">hrtimer</span><span class="w"> </span><span class="o">*</span><span class="n">timer</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="cm">/* do your timer stuff here */</span><span class="w"></span>
+<span class="w">    </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;Timer Callback function Called [%d]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">count</span><span class="o">++</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">hrtimer_forward_now</span><span class="p">(</span><span class="n">timer</span><span class="p">,</span><span class="n">ktime_set</span><span class="p">(</span><span class="n">TIMEOUT_SEC</span><span class="p">,</span><span class="w"> </span><span class="n">TIMEOUT_NSEC</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">HRTIMER_RESTART</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">__init</span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ktime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ktime_set</span><span class="p">(</span><span class="n">TIMEOUT_SEC</span><span class="p">,</span><span class="w"> </span><span class="n">TIMEOUT_NSEC</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="n">hrtimer_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">etx_hr_timer</span><span class="p">,</span><span class="w"> </span><span class="n">CLOCK_MONOTONIC</span><span class="p">,</span><span class="w"> </span><span class="n">HRTIMER_MODE_REL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">etx_hr_timer</span><span class="p">.</span><span class="n">function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">timer_callback</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">hrtimer_start</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">etx_hr_timer</span><span class="p">,</span><span class="w"> </span><span class="n">ktime</span><span class="p">,</span><span class="w"> </span><span class="n">HRTIMER_MODE_REL</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="cp">#define TIMEOUT_NSEC   ( 1000000000L )      </span><span class="c1">//1 second in nano seconds</span>
+<span class="cp">#define TIMEOUT_SEC    ( 4 )                </span><span class="c1">//4 seconds</span>
+</code></pre></div>
+<p>Completion</p>
+<div class="highlight"><pre><span></span><code><span class="n">DECLARE_COMPLETION</span><span class="p">(</span><span class="n">data_read_done</span><span class="p">);</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">** Waitqueue thread</span>
+<span class="cm">*/</span><span class="w"> </span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">wait_function</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">unused</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;Waiting For Event...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">wait_for_completion</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_read_done</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">completion_flag</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;Event Came From Exit Function</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;Event Came From Read Function - %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">++</span><span class="n">read_count</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">completion_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">do_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">ssize_t</span><span class="w"> </span><span class="nf">etx_read</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">file</span><span class="w"> </span><span class="o">*</span><span class="n">filp</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">__user</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="n">loff_t</span><span class="w"> </span><span class="o">*</span><span class="n">off</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;Read Function</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">completion_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">completion_done</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_read_done</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">//to see if completion has any waiters. 0-&gt; if waiters present</span>
+<span class="w">            </span><span class="n">complete</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_read_done</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">__init</span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="c1">//Create the kernel thread with name &#39;mythread&#39;</span>
+<span class="w">        </span><span class="n">wait_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kthread_create</span><span class="p">(</span><span class="n">wait_function</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;WaitThread&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wait_thread</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pr_info</span><span class="p">(</span><span class="s">&quot;Thread Created successfully</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">wake_up_process</span><span class="p">(</span><span class="n">wait_thread</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">__exit</span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="n">completion_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">completion_done</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_read_done</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">complete</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_read_done</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>EXPORT_SYMBOL</p>
+<p>file1: EXPORT_SYMBOL(foo)
+define foo</p>
+<p>file2: extern foo</p>
+<p>Make sure you insmod file1.ko first.</p>
+<p>Atomic Variables:</p>
+<p>Generally we need locks to access shared variables/data. But we can skip locks with atomic variables.</p>
+<p>Types:
+variables on int
+variables on bits</p>
+<p>Operations:
+atomic_read : int atomic_read(atomic_t <em>v);
+atomic_set : void atomic_set(atomic_t </em>v, int i);
+atomic_add : void atomic_add(int i, atomic_t <em>v);
+atomic_sub : void atomic_sub(int i, atomic_t </em>v);
+atomic_inc : void atomic_inc (atomic_t <em>v);
+atomic_dec : void atomic_dec (atomic_t </em>v);
+atomic_sub_and_test : void atomic_sub_and_test(int i, atomic_t <em>v);
+atomic_dec_and_test : void atomic_dec_and_test(atomic_t </em>v);
+void atomic_inc_and_test(atomic_t <em>v);
+void atomic_add_negative(int i, atomic_t </em>v);
+void atomic_add_return(int i, atomic_t *v);</p>
+<p>void set_bit(int nr, void <em>addr)    Atomically set the nr-th bit starting from addr
+void clear_bit(int nr, void </em>addr)  Atomically clear the nr-th bit starting from addr
+void change_bit(int nr, void <em>addr) Atomically flip the value of the nr-th bit starting from addr
+int test_and_set_bit(int nr, void </em>addr)    Atomically set the nr-th bit starting from addr and return the previous value
+int test_and_clear_bit(int nr, void <em>addr)  Atomically clear the nr-th bit starting from addr and return the previous value
+int test_and_change_bit(int nr, void </em>addr) Atomically flip the nr-th bit starting from addr and return the previous value
+int test_bit(int nr, void <em>addr)    Atomically return the value of the nr-th bit starting from addr
+int find_first_zero_bit(unsigned long </em>addr, unsigned int size) Atomically returns the bit-number of the first zero bit, not the number of the byte containing a bit
+int find_first_bit(unsigned long *addr, unsigned int size)  Atomically returns the bit-number of the first set bit, not the number of the byte containing a bit</p>
+<p>When read operations &gt;&gt;&gt;&gt; write operations but write operations should be fast, use seqlock</p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a877e258.min.js"></script>
+      
+        <script src="../../js/katex.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

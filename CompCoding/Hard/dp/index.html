@@ -1,0 +1,1697 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Simplified data structures, algorithms and competitive coding questions.">
+      
+      
+        <meta name="author" content="Tejas Pawar">
+      
+      
+        <link rel="canonical" href="https://tejas-pawar.github.io/DSA/CompCoding/Hard/dp/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
+    
+    
+      
+        <title>Dynamic Programming - Data Structures and Algorithms</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4a0965b7.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/katex.css">
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#62-unique-paths-simple-dp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Data Structures and Algorithms" class="md-header__button md-logo" aria-label="Data Structures and Algorithms" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data Structures and Algorithms
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dynamic Programming
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Data Structures and Algorithms" class="md-nav__button md-logo" aria-label="Data Structures and Algorithms" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Data Structures and Algorithms
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Data Structures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data Structures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Data Structures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DataStructures/basic/" class="md-nav__link">
+        Basic
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DataStructures/advanced/" class="md-nav__link">
+        Advanced
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DataStructures/vadvanced/" class="md-nav__link">
+        Very Advanced
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Algorithms
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Algorithms" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Algorithms
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Basic
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Basic" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Basic
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms/basic/sorting/" class="md-nav__link">
+        Sorting
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms/Resources/algo_resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Competitive Coding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Competitive Coding" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Competitive Coding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Hard
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Hard" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Hard
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recursion/" class="md-nav__link">
+        Recursion
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tree/" class="md-nav__link">
+        Tree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/" class="md-nav__link">
+        Graph Traversal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../list/" class="md-nav__link">
+        Linked List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdesheet/" class="md-nav__link">
+        SDE Sheet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Dynamic Programming
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Dynamic Programming
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#62-unique-paths-simple-dp" class="md-nav__link">
+    62. Unique Paths (Simple DP)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0-1-knapsack" class="md-nav__link">
+    0-1 Knapsack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subset-sum-problem" class="md-nav__link">
+    Subset Sum Problem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equal-sum-partition" class="md-nav__link">
+    Equal sum partition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count-of-subsets-with-sum" class="md-nav__link">
+    Count of subsets with Sum
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-subset-sum-difference" class="md-nav__link">
+    Minimum subset sum difference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count-subsets-with-given-sum-difference" class="md-nav__link">
+    Count subsets with given sum difference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target-sum-problem" class="md-nav__link">
+    Target Sum Problem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unbounded-knapsack" class="md-nav__link">
+    Unbounded Knapsack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rod-cutting-problem" class="md-nav__link">
+    Rod Cutting Problem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coin-change-combination-sum" class="md-nav__link">
+    Coin Change (Combination Sum)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coin-change-min" class="md-nav__link">
+    Coin Change (min)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coin-change-ways" class="md-nav__link">
+    Coin change (ways)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-common-subsequence" class="md-nav__link">
+    Longest Common Subsequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-common-substring" class="md-nav__link">
+    Longest Common Substring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shortest-supersequence" class="md-nav__link">
+    Shortest supersequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minuimum-number-of-insertions-and-deletions-to-convert-string-a-to-string-b" class="md-nav__link">
+    Minuimum number of insertions and deletions to convert string a to string b
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-palindromic-subsequence" class="md-nav__link">
+    Longest palindromic subsequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-number-of-deletions-to-make-it-palindrome" class="md-nav__link">
+    Minimum number of deletions to make it palindrome
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-repeating-subsequence" class="md-nav__link">
+    Longest Repeating Subsequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-number-of-insertions-to-make-it-palindrome" class="md-nav__link">
+    Minimum number of insertions to make it palindrome
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcm" class="md-nav__link">
+    MCM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-increasing-subsequence" class="md-nav__link">
+    Longest Increasing Subsequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#palindromic-partition" class="md-nav__link">
+    Palindromic partition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boolean-paranthesization-very-difficult" class="md-nav__link">
+    Boolean paranthesization  (very difficult)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#egg-dropping" class="md-nav__link">
+    Egg dropping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scrambled-string" class="md-nav__link">
+    Scrambled String
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#burst-balloon" class="md-nav__link">
+    Burst Balloon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buy-sell-stock-with-max-k-transactions" class="md-nav__link">
+    Buy Sell stock with max K transactions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../string/" class="md-nav__link">
+        Strings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../numbertheory/" class="md-nav__link">
+        Number Theory
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../greedy/" class="md-nav__link">
+        Greedy
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Embedded Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Embedded Systems" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Embedded Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          Socket
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Socket" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Socket
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EmbeddedSystems/iomux/" class="md-nav__link">
+        IO Multiplexing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Techniques You Must Know
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Techniques You Must Know" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Techniques You Must Know
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Techniques/mustknow_difficult/" class="md-nav__link">
+        Difficult
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          System Design
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Design" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          System Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SystemDesign/system_design_resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../debugEnhancement/" class="md-nav__link">
+        BoilerplateCode
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          Object Oriented
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Object Oriented" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Object Oriented
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OOP/oop_resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#62-unique-paths-simple-dp" class="md-nav__link">
+    62. Unique Paths (Simple DP)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0-1-knapsack" class="md-nav__link">
+    0-1 Knapsack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subset-sum-problem" class="md-nav__link">
+    Subset Sum Problem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equal-sum-partition" class="md-nav__link">
+    Equal sum partition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count-of-subsets-with-sum" class="md-nav__link">
+    Count of subsets with Sum
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-subset-sum-difference" class="md-nav__link">
+    Minimum subset sum difference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count-subsets-with-given-sum-difference" class="md-nav__link">
+    Count subsets with given sum difference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target-sum-problem" class="md-nav__link">
+    Target Sum Problem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unbounded-knapsack" class="md-nav__link">
+    Unbounded Knapsack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rod-cutting-problem" class="md-nav__link">
+    Rod Cutting Problem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coin-change-combination-sum" class="md-nav__link">
+    Coin Change (Combination Sum)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coin-change-min" class="md-nav__link">
+    Coin Change (min)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coin-change-ways" class="md-nav__link">
+    Coin change (ways)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-common-subsequence" class="md-nav__link">
+    Longest Common Subsequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-common-substring" class="md-nav__link">
+    Longest Common Substring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shortest-supersequence" class="md-nav__link">
+    Shortest supersequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minuimum-number-of-insertions-and-deletions-to-convert-string-a-to-string-b" class="md-nav__link">
+    Minuimum number of insertions and deletions to convert string a to string b
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-palindromic-subsequence" class="md-nav__link">
+    Longest palindromic subsequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-number-of-deletions-to-make-it-palindrome" class="md-nav__link">
+    Minimum number of deletions to make it palindrome
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-repeating-subsequence" class="md-nav__link">
+    Longest Repeating Subsequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-number-of-insertions-to-make-it-palindrome" class="md-nav__link">
+    Minimum number of insertions to make it palindrome
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcm" class="md-nav__link">
+    MCM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-increasing-subsequence" class="md-nav__link">
+    Longest Increasing Subsequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#palindromic-partition" class="md-nav__link">
+    Palindromic partition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boolean-paranthesization-very-difficult" class="md-nav__link">
+    Boolean paranthesization  (very difficult)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#egg-dropping" class="md-nav__link">
+    Egg dropping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scrambled-string" class="md-nav__link">
+    Scrambled String
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#burst-balloon" class="md-nav__link">
+    Burst Balloon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buy-sell-stock-with-max-k-transactions" class="md-nav__link">
+    Buy Sell stock with max K transactions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+  <h1>Dynamic Programming</h1>
+
+<h2 id="62-unique-paths-simple-dp"><strong>62. Unique Paths (Simple DP)</strong></h2>
+<p>There is a robot on an m x n grid. The robot is initially located at the top-left corner (i.e., grid[0][0]). The robot tries to move to the bottom-right corner (i.e., grid[m - 1][n - 1]). The robot can only move either down or right at any point in time.</p>
+<p>Given the two integers m and n, return the number of possible unique paths that the robot can take to reach the bottom-right corner.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">uniquePaths</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="n">m</span><span class="mi">-2</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="n">n</span><span class="mi">-2</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">matrix</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matrix</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">matrix</span><span class="p">[</span><span class="n">row</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">col</span><span class="p">];</span><span class="w"> </span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<h2 id="0-1-knapsack"><strong>0-1 Knapsack </strong></h2>
+<p><strong>Problem Statement:</strong>
+<br/>Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum total value in the knapsack. In other words, given two integer arrays val[0..n-1] and wt[0..n-1] which represent values and weights associated with n items respectively. <br />Also given an integer W which represents knapsack capacity, find out the maximum value subset of val[] such that sum of the weights of this subset is smaller than or equal to W. <br/>You cannot break an item, either pick the complete item or don’t pick it (0-1 property).</p>
+<p><strong>Solution:</strong>
+<br/>Optimal Sub-structure: To consider all subsets of items, there can be two cases for every item.
+<br/>Case 1: The item is included in the optimal subset.
+<br/>Case 2: The item is not included in the optimal set.</p>
+<p>Therefore, the maximum value that can be obtained from ‘n’ items is the max of the following two values. 
+<br/>1. Maximum value obtained by n-1 items and W weight (excluding nth item).
+<br/>2. Value of nth item plus maximum value obtained by n-1 items and W minus the weight of the nth item (including nth item).</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp"></span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">knapSack</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">W</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">wt</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// making and initializing dp array</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">W</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="n">memset</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">dp</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">W</span><span class="p">;</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">w</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wt</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="c1">// finding the maximum value</span>
+<span class="w">                </span><span class="n">dp</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">w</span><span class="p">],</span><span class="w"></span>
+<span class="w">                            </span><span class="n">dp</span><span class="p">[</span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">wt</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">W</span><span class="p">];</span><span class="w"> </span><span class="c1">// returning the maximum value of knapsack</span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">wt</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">W</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">knapSack</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="w"> </span><span class="n">wt</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p><br/></p>
+<h2 id="subset-sum-problem"><strong>Subset Sum Problem</strong></h2>
+<p><strong>Problem:</strong>
+<br/>Given a set of non-negative integers, and a value sum, determine if there is a subset of the given set with sum equal to given sum. </p>
+<p><strong>Solution:</strong>
+<br/>Similar to knapsack. Create a DP array of sum and elements.
+<br/>Return true if 
+<br/>1. Subset sum is possible without current element
+<br/>or
+<br/>2. [Subset sum - current element] is possible with n-1 elements.</p>
+<p><img alt="" src="../img/subsetsum1.png" /></p>
+<p>DP[ind][sum];
+<br/>DP[i][j] = DP[i-1][sum]
+<br/>if( sum-input[i] &gt;= 0 ) DP[i][j] = DP[i][j] || DP[i-1][sum-input[i]]</p>
+<p><br/></p>
+<div class="highlight"><pre><span></span><code><span class="c1">//Bottom up DP solution</span>
+</code></pre></div>
+<h2 id="equal-sum-partition"><strong>Equal sum partition</strong></h2>
+<p>Use above subset sum problem and find if there exists any subset with target sum = Total sum / 2</p>
+<h2 id="count-of-subsets-with-sum"><strong>Count of subsets with Sum</strong></h2>
+<p>In subset sum problem, instead of keeping bool, keep count of subsets with given sum and replace or with +.</p>
+<h2 id="minimum-subset-sum-difference"><strong>Minimum subset sum difference</strong></h2>
+<p>Min subset sum difference could be 0 i.e. similar to equal sum partition.</p>
+<p>In equal sum partition,
+we were returning true or false from last block i.e. dp[i][j] where i=size of input, j=target sum</p>
+<p>Here, we will return maximum sum (i.e. i) for which dp[i][sum] (last column) is true.</p>
+<h2 id="count-subsets-with-given-sum-difference"><strong>Count subsets with given sum difference</strong></h2>
+<p>Here we need to count subsets with sum = ( Total sum - diff ) / 2
+How to come up with above formula?
+Lets say we partition set with 1 subset sum=X and other subset sum =Y
+X+Y=TotalSum -&gt; Y = TotalSum-X or X = TotalSum-Y
+| X-Y | = diff
+X = diff + Y
+X = diff + TotalSum - X                 TotalSum - Y = diff + Y
+2 * X = diff + TotalSum                 TotalSum - diff = 2 * Y
+X = (diff + TotalSum) / 2               Y = ( TotalSum - diff) / 2</p>
+<p>You can use any of the formula.</p>
+<h2 id="target-sum-problem"><strong>Target Sum Problem</strong></h2>
+<p><br/>You are given an array of positive integers. You need to find number of ways by which you can make total sum of that array as given number. You are allowed to assign + or - sign to each element.
+<br/>This is same as Count subsets with given sum difference. But it is difficult to identify.</p>
+<h2 id="unbounded-knapsack"><strong>Unbounded Knapsack</strong></h2>
+<p>Same item can be taken multiple times.</p>
+<blockquote>
+<p>DP [ i ] [ j ] = max ( <strong> DP[ i-1 ] [ j ] ,  DP [ i ] [ j - weight [ i ] ] </strong> );</p>
+</blockquote>
+<h2 id="rod-cutting-problem"><strong> Rod Cutting Problem </strong></h2>
+<p>There are 2^length-1 options to cut rod.
+<br/>We can either cut or not cut between i , i + 1 for i=1,7 in following case. So 2^7 options.
+<br/>There is an optimal substructure property. If we know answer for length smaller than n then we can use that value in calculation for length n.</p>
+<p>1 2 3 4 5 6 7 8</p>
+<p><br/>cutRod(n) = max(price[i] + cutRod(n-i-1)) for all i in {0, 1 .. n-1}</p>
+<p><img alt="" src="../img/rodcuttingrec.png" /></p>
+<p><img alt="" src="../img/rodcuttingmemorec.png" /></p>
+<p><img alt="" src="../img/rodcuttingbu.png" /></p>
+<h2 id="coin-change-combination-sum"><strong>Coin Change (Combination Sum)</strong></h2>
+<p>Given the target value N and array of allowed numbers, count number of way to write N as sum of those numbers.</p>
+<p>Here only sum matters. How we are using those coins does not matter.
+1+1+2  here we have already used 1s and then used 2
+2+1+1  here we have used 2 first and then used 1 which is also allowed. </p>
+<p>E.g. nums = [1,2,3] N=4
+1+1+1+1, 1+1+2, 1+2+1, 1+3, 2+1+1, 2+2, 3+1 -&gt; total 7
+Note that 1+1+2 and 1+2+1 are counted as different way.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//top down</span>
+<span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mf">1.</span><span class="p">.</span><span class="n">N</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">nums</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">x</span><span class="p">]</span><span class="w"></span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">//bottom up</span>
+<span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mf">1.</span><span class="p">.</span><span class="n">N</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">nums</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"></span>
+</code></pre></div>
+<h2 id="coin-change-min"><strong>Coin Change (min)</strong></h2>
+<p>You are given denominations of coins and the target amount N. What is the minimum possible number of coins used.</p>
+<p>E.g.1: nums=[1,2,5] N=11 5+5+1 -&gt; 3 coins
+E.g.2: nums=[1,3,4] N=6 3+3 -&gt; 2 coins</p>
+<div class="highlight"><pre><span></span><code><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="n">dp</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">N</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">INF</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mf">1.</span><span class="p">.</span><span class="n">N</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">nums</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">x</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<h2 id="coin-change-ways"><strong>Coin change (ways)</strong></h2>
+<p>You are given denomination of coins and the target amount N. What is the number of ways to make up amount N ?</p>
+<p>E.g. nums=[1,2,5] N=5
+5, 1+2+2, 1+1+1+2, 1+1+1+1+1 -&gt; 4 Ways
+Note that order does not matter here.</p>
+<p>Here not only sum matters, here sum,coins used till now both matters. This is unbounded knapsack.
+Here last used coin matters. </p>
+<p>Since you want to avoid counting 1+2+2 and 2+1+2 differently. You can consider only ascending order ways.
+Think of it this way:
+Currently we have 1,2,5 coins. Let's first find no of ways using only 1, then find no of ways using 1,2, etc.
+dp[amount][coin_i] = dp[ amount-value[coin_i] ][coin_i] + dp[amount][coin_i-1]
+                      include coin_i                       don't include coin_i, so same amount using coin_i-1 coins</p>
+<p>Form a 2d dp table.</p>
+<h2 id="longest-common-subsequence">Longest Common Subsequence</h2>
+<p>C(i,j) = LCS[ text1(1..i), text2(1..j) ]
+LCS(text1,text2) = C(m,n) m=length of text1, n=length of text2</p>
+<p>C(i,j) = if text1[i] == text2[j] -&gt; C(i-1,j-1) 
+       = else max( C(i-1,j), C(i,j-1) ) </p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">longestCommonSubsequence</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">text1</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">text2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">short</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="mi">1001</span><span class="p">][</span><span class="mi">1001</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;=</span><span class="w"> </span><span class="n">text1</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">&lt;=</span><span class="w"> </span><span class="n">text1</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;=</span><span class="n">text1</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">&lt;=</span><span class="n">text2</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="c1">//LCS[x,y] = 1 + LCS(x-1,y-1) if equal</span>
+<span class="w">                </span><span class="c1">//         else max(LCS(x-1,y), LCS(x,y-1))</span>
+<span class="w">                </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text1</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">text2</span><span class="p">[</span><span class="n">j</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="o">+</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">][</span><span class="n">j</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="mi">-1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">text1</span><span class="p">.</span><span class="n">size</span><span class="p">()][</span><span class="n">text2</span><span class="p">.</span><span class="n">size</span><span class="p">()];</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="c1">//Function to print lcs</span>
+<span class="c1">// Recursive function to find the longest common subsequence of</span>
+<span class="c1">// string `X[0…m-1]` and `Y[0…n-1]`</span>
+<span class="n">string</span><span class="w"> </span><span class="nf">LCS</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dp</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// return an empty string if the end of either sequence is reached</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// if the last character of `X` and `Y` matches</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// append current character (`X[m-1]` or `Y[n-1]`) to LCS of</span>
+<span class="w">        </span><span class="c1">// substring `X[0…m-2]` and `Y[0…n-2]`</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// otherwise, if the last character of `X` and `Y` are different</span>
+
+<span class="w">    </span><span class="c1">// if a top cell of the current cell has more value than the left</span>
+<span class="w">    </span><span class="c1">// cell, then drop the current character of string `X` and find LCS</span>
+<span class="w">    </span><span class="c1">// of substring `X[0…m-2]`, `Y[0…n-1]`</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// if a left cell of the current cell has more value than the top</span>
+<span class="w">        </span><span class="c1">// cell, then drop the current character of string `Y` and find LCS</span>
+<span class="w">        </span><span class="c1">// of substring `X[0…m-1]`, `Y[0…n-2]`</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="longest-common-substring">Longest Common Substring</h2>
+<p>dp[i][j] represents longest common substring ending at str1[i], str2[j]</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">LCStr</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">str1</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">str2</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">N</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">M</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">    </span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
+<span class="w">                </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">str1</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">str2</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">else</span><span class="w"></span>
+<span class="w">                </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="shortest-supersequence">Shortest supersequence</h2>
+<p>Subsequence: Here x is a subsequence of y. Order matters but need not be contiguous.
+x : a b c d 
+y : a x y b z p c q r d</p>
+<p>Substring: Here x is substring of y. Complete string shouuld be part of parent string.
+x : a b c d
+y : p q r a b c d s t</p>
+<p>Minimum length string containing both strings X and Y as subsequence.</p>
+<p>Shortest supersequence length = x.size() + y.size() - 2 * LCS(x,y)</p>
+<h2 id="minuimum-number-of-insertions-and-deletions-to-convert-string-a-to-string-b">Minuimum number of insertions and deletions to convert string a to string b</h2>
+<p>ans = b.size() - LCS(a,b)</p>
+<h2 id="longest-palindromic-subsequence">Longest palindromic subsequence</h2>
+<p>xr = reverse(x.begin(), x.end());</p>
+<p>LPS = LCS(x, xr);</p>
+<h2 id="minimum-number-of-deletions-to-make-it-palindrome">Minimum number of deletions to make it palindrome</h2>
+<p>ans = x.size() - LPS</p>
+<h2 id="longest-repeating-subsequence">Longest Repeating Subsequence</h2>
+<p>A A B E B C D D</p>
+<p>A B D</p>
+<p>LCS but with additional condition</p>
+<p>int longestCommonSubsequence(string text1) {
+        string text2 = text1;
+        short dp[1001][1001];
+        for(int i=0; i&lt;= text1.size(); i++) {
+            dp[i][0] = 0;
+        }
+        for(int j=0; j&lt;= text1.size(); j++) {
+            dp[0][j] = 0;
+        }
+        for(int i=1; i&lt;=text1.size(); i++) {
+            for(int j=1; j&lt;=text2.size(); j++) {
+                //LCS[x,y] = 1 + LCS(x-1,y-1) if equal
+                //         else max(LCS(x-1,y), LCS(x,y-1))</p>
+<pre><code>            //(i!=j) condition to make sure that same position characters are not matched
+            dp[i][j] = text1[i-1] == text2[j-1] &amp;&amp; (i!=j) ? 1+dp[i-1][j-1] : max(dp[i-1][j],dp[i][j-1]);
+
+
+        }
+    }
+    return dp[text1.size()][text2.size()];
+</code></pre>
+<p>}</p>
+<h2 id="minimum-number-of-insertions-to-make-it-palindrome">Minimum number of insertions to make it palindrome</h2>
+<p>x = a b a c d
+xr = d c a b a
+LCS = a b a
+Minimum number of insertions = x.size()-LCS</p>
+<h2 id="mcm">MCM</h2>
+<p>DP[i][j] = min ( DP[i][k] + DP[k+1][j] + ( (i-1)<em>k</em>j ) ) for k in range (i,j-1)</p>
+<div class="highlight"><pre><span></span><code><span class="n">Time</span><span class="w"> </span><span class="n">Complexity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+
+<span class="c1">//Bottom up</span>
+<span class="c1">// Function to find the most efficient way to multiply</span>
+<span class="c1">// a given sequence of matrices</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">matrixChainMultiplication</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dims</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dims</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// c[i, j] = Minimum number of scalar multiplications (i.e., cost)</span>
+<span class="w">    </span><span class="c1">// needed to compute matrix `M[i] M[i+1] … M[j] = M[i…j]`</span>
+<span class="w">    </span><span class="c1">// The cost is zero when multiplying one matrix</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">len</span><span class="o">++</span><span class="p">)</span><span class="w">        </span><span class="c1">// subsequence lengths</span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">INT_MAX</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dims</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dims</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dims</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cost</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cost</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="longest-increasing-subsequence">Longest Increasing Subsequence</h2>
+<h2 id="palindromic-partition">Palindromic partition</h2>
+<h2 id="boolean-paranthesization-very-difficult">Boolean paranthesization  (very difficult)</h2>
+<p>https://leetcode.com/discuss/general-discussion/1279635/boolean-parenthesization-easy-c</p>
+<h2 id="egg-dropping">Egg dropping</h2>
+<h2 id="scrambled-string">Scrambled String</h2>
+<h2 id="burst-balloon">Burst Balloon</h2>
+<h2 id="buy-sell-stock-with-max-k-transactions">Buy Sell stock with max K transactions</h2>
+<p>https://www.youtube.com/watch?v=oDhu5uGq_ic&amp;t=935s</p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../sdesheet/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SDE Sheet" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              SDE Sheet
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../string/" class="md-footer__link md-footer__link--next" aria-label="Next: Strings" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Strings
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a877e258.min.js"></script>
+      
+        <script src="../../../js/katex.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

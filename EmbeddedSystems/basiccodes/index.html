@@ -1,0 +1,1305 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Simplified data structures, algorithms and competitive coding questions.">
+      
+      
+        <meta name="author" content="Tejas Pawar">
+      
+      
+        <link rel="canonical" href="https://tejas-pawar.github.io/DSA/EmbeddedSystems/basiccodes/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
+    
+    
+      
+        <title>Basiccodes - Data Structures and Algorithms</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4a0965b7.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/katex.css">
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#thread-creation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Data Structures and Algorithms" class="md-header__button md-logo" aria-label="Data Structures and Algorithms" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data Structures and Algorithms
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Basiccodes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Data Structures and Algorithms" class="md-nav__button md-logo" aria-label="Data Structures and Algorithms" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Data Structures and Algorithms
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Data Structures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data Structures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Data Structures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DataStructures/basic/" class="md-nav__link">
+        Basic
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DataStructures/advanced/" class="md-nav__link">
+        Advanced
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DataStructures/vadvanced/" class="md-nav__link">
+        Very Advanced
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Algorithms
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Algorithms" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Algorithms
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Basic
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Basic" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Basic
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithms/basic/sorting/" class="md-nav__link">
+        Sorting
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithms/Resources/algo_resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Competitive Coding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Competitive Coding" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Competitive Coding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Hard
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Hard" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Hard
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/recursion/" class="md-nav__link">
+        Recursion
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/tree/" class="md-nav__link">
+        Tree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/graph/" class="md-nav__link">
+        Graph Traversal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/list/" class="md-nav__link">
+        Linked List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/sdesheet/" class="md-nav__link">
+        SDE Sheet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/dp/" class="md-nav__link">
+        Dynamic Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/string/" class="md-nav__link">
+        Strings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/numbertheory/" class="md-nav__link">
+        Number Theory
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CompCoding/Hard/greedy/" class="md-nav__link">
+        Greedy
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Embedded Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Embedded Systems" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Embedded Systems
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          Socket
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Socket" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Socket
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iomux/" class="md-nav__link">
+        IO Multiplexing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Techniques You Must Know
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Techniques You Must Know" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Techniques You Must Know
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Techniques/mustknow_difficult/" class="md-nav__link">
+        Difficult
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          System Design
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Design" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          System Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SystemDesign/system_design_resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../debugEnhancement/" class="md-nav__link">
+        BoilerplateCode
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          Object Oriented
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Object Oriented" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Object Oriented
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OOP/oop_resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#thread-creation" class="md-nav__link">
+    Thread creation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pthread-mutex" class="md-nav__link">
+    pthread mutex
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-are-processes-started-in-linux" class="md-nav__link">
+    How are processes started in linux?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semaphores" class="md-nav__link">
+    Semaphores
+  </a>
+  
+    <nav class="md-nav" aria-label="Semaphores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-semaphore" class="md-nav__link">
+    Binary semaphore:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signalling-using-sempahore" class="md-nav__link">
+    Signalling using sempahore
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handling-interrupts-in-c" class="md-nav__link">
+    Handling interrupts in c
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-handling-using-high-level-api" class="md-nav__link">
+    File handling using high level API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-buffering-in-kernel" class="md-nav__link">
+    Why buffering in kernel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    Important notes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-bit-vs-64-bit" class="md-nav__link">
+    32 bit vs 64 bit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reentrant" class="md-nav__link">
+    Reentrant
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal-action-handler-to-catch-signal-due-to-crashes" class="md-nav__link">
+    signal action handler to catch signal due to crashes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-server" class="md-nav__link">
+    Client Server
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zombie-process" class="md-nav__link">
+    Zombie process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-are-timers-implemented" class="md-nav__link">
+    How are timers implemented ?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-are-locks-implemented" class="md-nav__link">
+    How are locks implemented ?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operating-systems" class="md-nav__link">
+    Operating systems
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+  <h1>Basiccodes</h1>
+
+<h2 id="thread-creation">Thread creation</h2>
+<div class="highlight"><pre><span></span><code><span class="c1">//posix thread creation</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">threadFunc</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">tid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">arg</span><span class="p">;</span><span class="w"> </span><span class="c1">//cast it back to int</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">ret</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;threadFunc entered with argument %d, stackspace for this starts from %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tid</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tid</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">strcpy</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;This is a test&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">//returned in ret</span>
+<span class="w">  </span><span class="n">pthread_exit</span><span class="p">(</span><span class="n">ret</span><span class="p">);</span><span class="w"> </span><span class="c1">//Implicitly called with default arguments if not written</span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="n">init</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">nthreads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">nthreads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="n">pthread_t</span><span class="o">*</span><span class="w"> </span><span class="n">threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">nthreads</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">nthreads</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">nthreads</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">thid</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="kr">thread</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="c1">//casting to void*, threadfunc will cast it back to int</span>
+<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">rc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span><span class="w"> </span><span class="c1">//error</span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//Wait for all previously created threads to finish and then join</span>
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">nthreads</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pthread_join</span><span class="p">(</span><span class="n">thid</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ret</span><span class="p">);</span><span class="w"> </span><span class="c1">//&amp;ret is passed to get status, null can also be passed</span>
+<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">rc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">exit</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="pthread-mutex">pthread mutex</h2>
+<div class="highlight"><pre><span></span><code><span class="n">pthread_mutex_t</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PTHREAD_MUTEX_INITIALIZER</span><span class="p">;</span><span class="w"> </span>
+
+<span class="cm">/* Alternate pthread_mutex initialization</span>
+<span class="cm">pthread_mutex_t lock;</span>
+<span class="cm">pthread_mutex_init ( &amp;lock, NULL);</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">crit_var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">162</span><span class="p">;</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">threadFunc</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">tid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">arg</span><span class="p">;</span><span class="w"> </span><span class="c1">//cast it back to int</span>
+<span class="w">  </span><span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">crit_var</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="c1">//perform operation on critical section</span>
+<span class="w">  </span><span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="how-are-processes-started-in-linux">How are processes started in linux?</h2>
+<p>Processes are started by processes. Userspace programs call fork, exec.
+1st process is started by kernel.
+- Often configured as an argument to the kernel before kernel boots
+- Often called as init process</p>
+<div class="highlight"><pre><span></span><code><span class="n">Code</span><span class="w"> </span><span class="n">snippet</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">linux</span><span class="mf">-3.14</span><span class="o">/</span><span class="n">init</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">c</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">:-</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">try_to_run_init_process</span><span class="p">(</span><span class="s">&quot;/etc/preinit&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
+<span class="w">    </span><span class="o">!</span><span class="n">try_to_run_init_process</span><span class="p">(</span><span class="s">&quot;/sbin/init&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
+<span class="w">    </span><span class="o">!</span><span class="n">try_to_run_init_process</span><span class="p">(</span><span class="s">&quot;/etc/init&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
+<span class="w">    </span><span class="o">!</span><span class="n">try_to_run_init_process</span><span class="p">(</span><span class="s">&quot;/bin/init&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
+<span class="w">    </span><span class="o">!</span><span class="n">try_to_run_init_process</span><span class="p">(</span><span class="s">&quot;/bin/sh&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>fork 
+- New process has different pid
+- New process has only 1 thread. So be careful with locks in multithreaded process.
+Consider P1 has 2 threads. thread 2 has lock. thread 1 forks. P2 created will have only 1 thread and you will never get that lock as you had taken lock before but did not release. If you run exec in child process immediately after fork, then you would never need that lock and you will be fine.</p>
+<p>Return value from fork:
+- &gt;0 : Running in parent process as parent process has received pid of child process
+- =0 : Running in child process, as child process has nothing to receive
+- &lt;0 : error condition</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Parent process pid=%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">getpid</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//parent</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Parent process pid after fork =%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">getpid</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//child</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Child process pid after fork =%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">getpid</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//Everything is copied from parent process, address space, fd, etc.</span>
+
+<span class="w">        </span><span class="c1">//Discard everything copied from parent and running new ls -l from child process using exec</span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;ls&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;-l&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">null</span><span class="p">};</span><span class="w"></span>
+<span class="w">        </span><span class="n">execv</span><span class="p">(</span><span class="s">&quot;/bin/ls&quot;</span><span class="p">,</span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//error</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>The difference between execl<em> and execv</em> is the argument passing. execl<em> require a list of arguments while execv</em> require a vector of arguments.
+A list of arguments is useful if you know all the arguments at compile time. In your case the arguments will be entered by the user and you have to construct a vector of arguments at run time, so you should use one of the execv* functions.</p>
+<p>The functions with suffix p use the PATH environment variable to find the program (e.g. "ls"), without this you have to specify the full path (either absolute or relative to the current directory, e.g. "/bin/ls"). Using PATH is what shells normally do, so this seems to be the correct choice for you.</p>
+<p>The functions with suffix e allow to specify the environment for the process.</p>
+<h2 id="semaphores">Semaphores</h2>
+<p>P() decrements  (down())
+V() increments  (up())</p>
+<h3 id="binary-semaphore">Binary semaphore:</h3>
+<p>sem = 1;
+sem.down();
+//critical section
+sem.up()</p>
+<h3 id="signalling-using-sempahore">Signalling using sempahore</h3>
+<p>In following example, T1 is kept in blocked state since it tries to down sem but initial value of sem is 0.
+Now we want T1 to run only after T2 finishes.
+So we do sem.up() when T2 ends. This causes T1 to be ready. So T2 has signalled T1.</p>
+<div class="highlight"><pre><span></span><code><span class="n">sem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="n">T1</span><span class="w">                                      </span><span class="n">T2</span><span class="w"></span>
+<span class="n">ThreadJoin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">                          </span><span class="n">ThreadFinish</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">sem</span><span class="p">.</span><span class="n">down</span><span class="p">();</span><span class="w">                             </span><span class="n">sem</span><span class="p">.</span><span class="n">up</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w">                                       </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="handling-interrupts-in-c">Handling interrupts in c</h2>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">signal_callback_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">signum</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">sigaction</span><span class="w"> </span><span class="n">sa</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">sa</span><span class="p">.</span><span class="n">sa_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//sigemptyset : Initializes a signal set sa.sa_mask to the empty set. All recognized signals are excluded.</span>
+<span class="w">    </span><span class="n">sigemptyset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sa</span><span class="p">.</span><span class="n">sa_mask</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">sa</span><span class="p">.</span><span class="n">sa_handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">signal_callback_handler</span><span class="p">;</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="c1">//sigaction : Examines and changes the action associated with a specific signal.</span>
+<span class="w">    </span><span class="n">sigaction</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sa</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"> </span><span class="c1">// use sa sigaction for SIGNINT</span>
+
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="file-handling-using-high-level-api">File handling using high level API</h2>
+<p>High level APIs have f at the beginning i.e. fopen, fclose, fread, etc and returns FILE<em> (user level buffering)
+User space buffering can get block of data from kernel and return bytes quickly. Simple caching.
+Low level APIs are like open, read, close, write, etc. and return fds instead of FILE</em>. (no buffering at user level)</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//character oriented (block oriented in comments)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">FILE</span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;input.txt&quot;</span><span class="p">,</span><span class="n">r</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">FILE</span><span class="o">*</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;output.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w">   </span><span class="c1">//char buffer[1024];</span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fgetc</span><span class="p">(</span><span class="n">input</span><span class="p">);</span><span class="w">  </span><span class="c1">//size_t length = fread(buffer, 1024, sizeof(char), input);</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">EOF</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// length &gt; 0</span>
+<span class="w">        </span><span class="n">fputc</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w">  </span><span class="c1">// fwrite(buffer,length, sizeof(char), output);</span>
+<span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fgetc</span><span class="p">(</span><span class="n">input</span><span class="p">);</span><span class="w">       </span><span class="c1">// length = fread(buffer, 1024, sizeof(char), input);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">input</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">output</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="why-buffering-in-kernel">Why buffering in kernel</h2>
+<p>Kernel buffers read and writes
+-Disks are block oriented and we need to provide byte oriented implementation -&gt; hence buffering
+-Caching: 
+-Process is blocked while waiting for data, so let other process run</p>
+<h2 id="important-notes">Important notes</h2>
+<ul>
+<li>Don't fork from process which has multiple threads<ul>
+<li>Child process always has just a single thread</li>
+<li>Other threads vanish</li>
+</ul>
+</li>
+</ul>
+<p>pthread is actually implemented using the clone() system call -&gt; creates task_struct. 
+So we can infer that there is a kernel thread (or a light-weight process) backing up a pthread in the user space. 
+The kernel is aware of the pthread and can schedule it like a process.</p>
+<p>current-&gt;mm //contains user space memory map, this is null in kernel thread as it does not have virtual memory address space</p>
+<h2 id="32-bit-vs-64-bit">32 bit vs 64 bit</h2>
+<p>64bit compiled binary has 64bit pointers. Long size is 8bytes
+32bit compiled binary has 32bit pointers. Long size is 4bytes.</p>
+<p>32bit and 6bit os can run on 64bit processor
+But only 32bit os can run on 32bit processor as <em>max width of registers supported by processor is 32bits.</em></p>
+<p>When we say 32bit os, we mean that virtual address space is just 4gb. i.e. per process only 4GB is supported.
+But total ram can be more than 4gb.
+When we say 64bit os, we mean huge virtual address space.</p>
+<h2 id="reentrant">Reentrant</h2>
+<p>Reentrant means that you can run reentrant function multiple times parallely and still get same output for same input.</p>
+<h2 id="signal-action-handler-to-catch-signal-due-to-crashes">signal action handler to catch signal due to crashes</h2>
+<p>Create sigaction object act, </p>
+<p>call sigaction to inform kernel that on catching SIGSEGV, use act sigaction
+int sigaction( int sig, const struct sigaction <em>action_to_be_set, // used to set action object for sig
+                struct sigaction </em>old_action ); //can be used to check current action object</p>
+<p>struct sigaction {
+    void      (<em>sa_handler)(int);
+    sigset_t  sa_mask;
+    int       sa_flags;
+    void      (</em>sa_sigaction)(int, siginfo_t <em>,void </em>);
+};</p>
+<p>sa_flags: SA_SIGINFO: If this flag is not set and the signal is caught, the signal-catching function identified by sa_handler is entered. If this flag is set and the signal is caught, the signal-catching function identified by sa_sigaction is entered.</p>
+<div class="highlight"><pre><span></span><code><span class="w">       </span><span class="kt">void</span><span class="w"></span>
+<span class="w">       </span><span class="nf">handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">signo</span><span class="p">,</span><span class="w"> </span><span class="kt">siginfo_t</span><span class="w"> </span><span class="o">*</span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">context</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="k">struct</span><span class="w"> </span><span class="nc">sigaction</span><span class="w"> </span><span class="n">oldact</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">           </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sigaction</span><span class="p">(</span><span class="n">SIGSEGV</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">oldact</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
+<span class="w">                   </span><span class="p">(</span><span class="n">oldact</span><span class="p">.</span><span class="n">sa_flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">SA_UNSUPPORTED</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
+<span class="w">                   </span><span class="o">!</span><span class="p">(</span><span class="n">oldact</span><span class="p">.</span><span class="n">sa_flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">SA_EXPOSE_TAGBITS</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">               </span><span class="n">_exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"></span>
+<span class="w">           </span><span class="n">_exit</span><span class="p">(</span><span class="n">EXIT_SUCCESS</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">       </span><span class="kt">int</span><span class="w"></span>
+<span class="w">       </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="k">struct</span><span class="w"> </span><span class="nc">sigaction</span><span class="w"> </span><span class="n">act</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+
+<span class="w">           </span><span class="n">act</span><span class="p">.</span><span class="n">sa_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SA_SIGINFO</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SA_UNSUPPORTED</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SA_EXPOSE_TAGBITS</span><span class="p">;</span><span class="w"></span>
+<span class="w">           </span><span class="n">act</span><span class="p">.</span><span class="n">sa_sigaction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">handler</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">           </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sigaction</span><span class="p">(</span><span class="n">SIGSEGV</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">act</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">               </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;sigaction&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">               </span><span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">           </span><span class="n">raise</span><span class="p">(</span><span class="n">SIGSEGV</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="client-server">Client Server</h2>
+<p>Client
+1. socket  // Create socket
+2. connect // Connect to server
+3. read / write // Communication
+4. close</p>
+<p>```c Client</p>
+<p>// Create a socket
+struct addrinfo *server = lookup_host(host_name, port_name);
+int sock_fd = socket(server‐&gt;ai_family, server‐&gt;ai_socktype, server‐&gt;ai_protocol);
+connect(sock_fd, server‐&gt;ai_addr, server‐&gt;ai_addrlen);</p>
+<div class="highlight"><pre><span></span><code>Server
+
+1. socket // Create socket
+2. bind // Bind socket to an address
+3. listen // Listen for connection i.e. open port for accepting communication
+//while loop
+4. accept //
+5. read / write // Communication
+6. close // Close connection socket
+//while loop end
+7. close // Close server socket
+
+```c Server
+
+
+struct addrinfo *server = setup_address(port_name);
+int server_socket = socket(server‐&gt;ai_family, server‐&gt;ai_socktype, server‐&gt;ai_protocol);
+// Bind socket to specific port
+bind(server_socket, server‐&gt;ai_addr, server‐&gt;ai_addrlen);
+// Start listening for new client connections
+listen(server_socket, MAX_QUEUE);
+while (1) {
+    // Accept a new client connection, obtaining a new socket
+    int conn_socket = accept(server_socket, NULL, NULL);
+    serve_client(conn_socket);
+    close(conn_socket);
+}
+close(server_socket);
+</code></pre></div>
+<p>Above implementation does not support parallel connection as we are in same thread, process.
+To support concurrency, we can 
+1. Fork on each connection, so new process for each connection, so we get protection between connections -&gt; heavy weight. So this should not be done
+2. pthread_create on each connection, so new thread for each connection -&gt; possibility of lots of threads in 1 process i.e. unbounded threads, no protection</p>
+<p>Solution:
+Use thread pools</p>
+<h2 id="zombie-process">Zombie process</h2>
+<p>Processes on completion can be in terminated state but not freed. Such processes are called zombie processes.
+Terminated state is required because 
+Consider 2 process P1 and P2, P1 is parent of P2. P2 is scheduled and gets completed. If we just directly free P2 then P1 i.e. parent process won't know about return value of P2 as P1 is yet to be scheduled. Once we schedule P1 and P1 knows about the return value then we can free that memory.</p>
+<p>To know about return value of child processes, scheduled and completed child process is kept in terminated/zombie state until parent process reads return value.</p>
+<h2 id="how-are-timers-implemented">How are timers implemented ?</h2>
+<h2 id="how-are-locks-implemented">How are locks implemented ?</h2>
+<p>Expensive way since user to kernel context switch :
+In kernel lock: disable interrupts and check values, if already taken then keep current thread on wait queue for that lock. Go to sleep.</p>
+<p>We are using futex to either sleep a thread or wake up a thread. But acquire, release is what is callled multiple times which we do not want to keep expensive. So we use atomic instruction with global guard variable to keep acquire and release functions locked but now based on values of individual lock we need to decide whether process should be brought to ready or made to sleep.</p>
+<p>So no kernel call if unlocked.</p>
+<p>Scheduling:</p>
+<p>There are multiple schedulers, we can decide schedulers for each thread/process. Generally sched_normal refers to CFS.
+If we have selected different </p>
+<h2 id="operating-systems">Operating systems</h2>
+<p>Watch last 5 minutes of all lectures and first 10 minutes of next levture</p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a877e258.min.js"></script>
+      
+        <script src="../../js/katex.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
