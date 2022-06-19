@@ -5,6 +5,10 @@ site_author: Tejas Pawar
 site_url: https://tejas-pawar.github.io/DSA/
 theme:
   name: material
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
 
 extra_css:
   - css/katex.css
@@ -26,7 +30,8 @@ nav:
       - Basic:
           - Sorting: Algorithms/basic/sorting.md
           #- Tree Traversal: Algorithms/basic/treetraversal.md
-          - Graph Traversal: Algorithms/basic/graph.md
+          #- Graph Traversal: Algorithms/basic/graph.md
+      - Resources: Algorithms/Resources/algo_resources.md
       #- Advanced:
           #- General: Algorithms/advanced/general.md
           #- Divide And Conquer: Algorithms/advanced/dnc.md
@@ -40,16 +45,29 @@ nav:
           #- Graphs: CompCoding/easy/graphs.md
           #- DP: CompCoding/easy/dp.md
       #- Medium: CompCoding/medium.md
-      - Hard: 
+      - Hard:
+        - Recursion: CompCoding/Hard/recursion.md 
         - Tree: CompCoding/Hard/tree.md
+        - Graph Traversal: CompCoding/Hard/graph.md
+        - Linked List: CompCoding/Hard/list.md
+        - SDE Sheet: CompCoding/Hard/sdesheet.md
+        - Dynamic Programming: CompCoding/Hard/dp.md
+        - Strings: CompCoding/Hard/string.md 
+        - Number Theory: CompCoding/Hard/numbertheory.md
+        - Greedy:  CompCoding/Hard/greedy.md 
       #- Combo Problems:
           #- Catalan Numbers: CompCoding/combo/catalan.md
           #- Overlapping Intervals: CompCoding/combo/overlapping_intervals.md
+  - Embedded Systems:
+      - Socket:
+        - IO Multiplexing: EmbeddedSystems/iomux.md
   - Techniques You Must Know:
       #- Easy: Techniques/mustknow_easy.md
       - Difficult: Techniques/mustknow_difficult.md
+      #- Number Theory: Techniques/number_theory.md
   - System Design:
       - Resources: SystemDesign/system_design_resources.md
+  - BoilerplateCode: debugEnhancement.md
   - Object Oriented:
       - Resources: OOP/oop_resources.md
 
